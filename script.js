@@ -149,10 +149,6 @@ function init() {
   
   const tabuleiro = new Tabuleiro(tabuleiroCanvas)
   const jogador = new Jogador(5, 5);
-  jogador.cobra.addNo();
-  jogador.cobra.addNo();
-  jogador.cobra.addNo();
-  jogador.cobra.addNo();
 
   tabuleiro.load(jogador);
   
