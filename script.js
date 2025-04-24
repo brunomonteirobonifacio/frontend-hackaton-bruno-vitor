@@ -52,6 +52,15 @@ class Jogador {
     this.cobra = new NoCauda(x, y, canvasContext);
   }
 
+  setCanvasContent(canvasContext) {
+    let noAtual = this.cobra;
+
+    while (noAtual) {
+      noAtual.canvasContext = canvasContext;
+      noAtual = noAtual.anterior;
+    }
+  }
+
   comer(fruta) {
     // fruta.consumir();
     this.cobra.addNo();
@@ -98,6 +107,7 @@ class Tabuleiro {
 
   load(jogador) {
     this.jogador = jogador
+    this.jogador.setCanvasContent(this.canvasContext)
     if (this.jogador == null) {
       throw new Error('Jogador deve estar definido antes de carregar o tabuleiro')
     }
@@ -139,6 +149,10 @@ function init() {
   
   const tabuleiro = new Tabuleiro(tabuleiroCanvas)
   const jogador = new Jogador(5, 5);
+  jogador.cobra.addNo();
+  jogador.cobra.addNo();
+  jogador.cobra.addNo();
+  jogador.cobra.addNo();
 
   tabuleiro.load(jogador);
   
