@@ -6,14 +6,15 @@ class Tabuleiro {
   height;
   matriz = [];
   jogador;
-  frutas;
+  frutas = [];
 
-  constructor(width, height) {
-    this.width = width;
-    this.height = height;
-
-    this.frutas = [];
-
+  constructor(tabuleiroCanvas, scale) {
+    this.width = tabuleiroCanvas.getAttribute('width') / scale;
+    this.lenght = tabuleiroCanvas.getAttribute('height') / scale;
+    
+    if (this.width <= 0 || this.height <= 0) {
+      throw new Error('Both width and height must be greater than zero')
+    }
   }
 
   start() {

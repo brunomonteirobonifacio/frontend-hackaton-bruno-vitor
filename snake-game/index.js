@@ -1,14 +1,12 @@
-const WIDTH_TABULEIRO = 128;
-const HEIGHT_TABULEIRO = 128;
+const SCALE = 15;
 
 function init() {
   const tabuleiroCanvas = document.getElementById('game-board');
   
   const jogador = new Jogador(5, 5);
-  const tabuleiro = new Tabuleiro(WIDTH_TABULEIRO, HEIGHT_TABULEIRO);
+  const tabuleiro = new Tabuleiro(tabuleiroCanvas, scale);
   const renderer = new Renderer(tabuleiro, tabuleiroCanvas);
-  renderer.scale = 10
-  renderer.step = 10
+  renderer.setScale(SCALE);
 
   tabuleiro.jogador = jogador;
   tabuleiro.start();
