@@ -2,9 +2,6 @@ class Renderer {
   tabuleiro;
   canvasContext;
 
-  scale = 1;
-  step = 1;
-
   constructor(tabuleiro, canvas) {
     this.tabuleiro = tabuleiro;
     this.canvasContext = canvas.getContext('2d');
@@ -19,10 +16,14 @@ class Renderer {
 
         if (currentObject != null && currentObject.__proto__.__proto__ == GameObject.prototype) {
           this.canvasContext.fillStyle = currentObject.getColor();
-          this.canvasContext.fillRect(x + this.step, y + this.step, this.scale, this.scale);
+          this.canvasContext.fillRect(x, y, 1, 1);
         }
       }
     }
+  }
+
+  setScale(scale) {
+    this.canvasContext.scale(scale, scale);
   }
 
   clearCanvas() {
