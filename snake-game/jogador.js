@@ -34,6 +34,7 @@ class NoCauda extends GameObject {
 
 class Jogador {
   head;
+  direcao = { x: 1, y: 0 };
 
   constructor(x, y, canvasContext) {
     this.head = new NoCauda(x, y, canvasContext);

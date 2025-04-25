@@ -10,6 +10,7 @@ function init() {
 
   tabuleiro.jogador = jogador;
   tabuleiro.start();
+  setInterval(() => tabuleiro.step(), 1000)
   renderer.render();
   
   observeTeclado(tabuleiro, renderer);
@@ -20,7 +21,10 @@ function observeTeclado(tabuleiro, renderer) {
     const moveX = (event.key == 'ArrowRight') - (event.key == 'ArrowLeft');
     const moveY = (event.key == 'ArrowDown') - (event.key == 'ArrowUp');
 
-    tabuleiro.atualizarPosicaoJogador(tabuleiro.jogador.head.x + moveX, tabuleiro.jogador.head.y + moveY);
+    if (moveX || moveY) {
+      tabuleiro.atualizarPosicaoJogador(tabuleiro.jogador.head.x + moveX, tabuleiro.jogador.head.y + moveY);
+
+    }
     renderer.render();    
   })
 }
