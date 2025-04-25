@@ -10,7 +10,7 @@ class Tabuleiro {
 
   constructor(tabuleiroCanvas, scale) {
     this.width = tabuleiroCanvas.getAttribute('width') / scale;
-    this.lenght = tabuleiroCanvas.getAttribute('height') / scale;
+    this.height = tabuleiroCanvas.getAttribute('height') / scale;
     
     if (this.width <= 0 || this.height <= 0) {
       throw new Error('Both width and height must be greater than zero')
@@ -43,6 +43,7 @@ class Tabuleiro {
   loadObjectsToMatriz() {
     let noAtual = this.jogador.head;
 
+    this.frutas.forEach(fruta => console.log(fruta))
     this.frutas.forEach(fruta => this.matriz[fruta.y][fruta.x] = fruta)
 
     while (noAtual) {
@@ -54,9 +55,12 @@ class Tabuleiro {
   spawnFrutas() {
     for (let i = 0; i < Math.max(5, parseInt(Math.random() * 20, 10)); i++) {
 
-      const x = (parseInt(Math.random() * this.width, 10));
+      const x = parseInt(Math.random() * this.width, 10);
       const y = parseInt(Math.random() * this.height, 10);
+      console.log(y)
       const fruta = new Fruta(x, y);
+
+      console.log(fruta)
 
       this.frutas.push(fruta)
     }
