@@ -23,13 +23,23 @@ class Tabuleiro {
     this.loadObjectsToMatriz();
   }
 
-  step() {
-    if (this.matriz[this.jogador.head.y][this.jogador.head.x]?.constructor.name == 'Fruta') {
-      const frutaRemoverX = this.jogador.head.x;
-      const frutaRemoverY = this.jogador.head.y;
+  endGame() {
+    alert('Game Over');
+    history.go(0);
+  }
 
-      this.jogador.comer();
-      this.frutas = this.frutas.filter(fruta => fruta.x != frutaRemoverX && fruta.y != frutaRemoverY);
+  step() {
+    if (this.matriz[this.jogador.head.y][this.jogador.head.x]) {
+      const collidedObject = this.matriz[this.jogador.head.y][this.jogador.head.x];
+      if (collidedObject.constructor.name == 'Fruta') {
+        const frutaRemoverX = this.jogador.head.x;
+        const frutaRemoverY = this.jogador.head.y;
+  
+        this.jogador.comer();
+        this.frutas = this.frutas.filter(fruta => fruta.x != frutaRemoverX || fruta.y != frutaRemoverY);
+      } else if (collidedObject.constructor.name == 'NoCauda') {
+        this.endGame();
+      }
     }
 
     if (this.frutas.length == 0) {
