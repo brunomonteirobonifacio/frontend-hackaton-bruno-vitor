@@ -43,7 +43,6 @@ class Tabuleiro {
   loadObjectsToMatriz() {
     let noAtual = this.jogador.head;
 
-    this.frutas.forEach(fruta => console.log(fruta))
     this.frutas.forEach(fruta => this.matriz[fruta.y][fruta.x] = fruta)
 
     while (noAtual) {
@@ -57,10 +56,7 @@ class Tabuleiro {
 
       const x = parseInt(Math.random() * this.width, 10);
       const y = parseInt(Math.random() * this.height, 10);
-      console.log(y)
       const fruta = new Fruta(x, y);
-
-      console.log(fruta)
 
       this.frutas.push(fruta)
     }
