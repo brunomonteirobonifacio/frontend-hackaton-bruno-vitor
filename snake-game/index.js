@@ -4,7 +4,7 @@ function init() {
   const tabuleiroCanvas = document.getElementById('game-board');
   
   const jogador = new Jogador(5, 5);
-  const tabuleiro = new Tabuleiro(tabuleiroCanvas, scale);
+  const tabuleiro = new Tabuleiro(tabuleiroCanvas, SCALE);
   const renderer = new Renderer(tabuleiro, tabuleiroCanvas);
   renderer.setScale(SCALE);
 
