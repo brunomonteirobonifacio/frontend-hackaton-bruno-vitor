@@ -4,7 +4,7 @@ function falar(frase) {
 
   async function falarAlgo() {
     try {
-      const res = await fetch('https://api.adviceslip.com/advice');
+      const res = await fetch('https://api.quotable.io/random');
       if (!res.ok) throw new Error('Falha ao buscar frase.');
       const data = await res.json();
       falar(`"${data.content}" — Não se emociona, não. SSSSZZZSSSS`);
