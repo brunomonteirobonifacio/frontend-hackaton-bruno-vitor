@@ -4,14 +4,14 @@ function falar(frase) {
 
   async function falarAlgo() {
     try {
-      const res = await fetch('https://api.api-ninjas.com/v1/quotes', {
+      const res = await fetch('https://icanhazdadjoke.com/', {
         headers: {
-          'X-Api-Key': 'ny9wj5J3M/DYlcCsOtyzwA==0clI914ODkhUgiQm'
+          Accept: 'application/json'
         }
       });
-      if (!res.ok) throw new Error('Falha ao buscar frase.');
+      if (!res.ok) throw new Error('Falha ao buscar piada.');
       const data = await res.json();
-      falar(`"${data[0].quote}" — Não se emociona, não. SSSSZZZSSSS`);
+      falar(`"${data.joke}" — SSSSZZZSSSS *força risada em língua de cobra*.`);
     } catch (err) {
       const fallbackFrases = [
         "Não consegui pensar em nada, volte mais tarde.",
