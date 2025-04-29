@@ -1,12 +1,11 @@
 const MEDIDA_TO_PIXEL = 5;
-
-
 class Tabuleiro {
   width;
   height;
   matriz = [];
   jogador;
   frutas = [];
+  endGameObservers = [];
 
   constructor(tabuleiroCanvas, scale) {
     this.width = tabuleiroCanvas.getAttribute('width') / scale;
@@ -19,33 +18,6 @@ class Tabuleiro {
 
   start() {
     this.spawnFrutas();
-    this.resetMatriz();
-    this.loadObjectsToMatriz();
-  }
-
-  endGame() {
-    alert('Game Over');
-    history.go(0);
-  }
-
-  step() {
-    if (this.matriz[this.jogador.head.y][this.jogador.head.x]) {
-      const collidedObject = this.matriz[this.jogador.head.y][this.jogador.head.x];
-      if (collidedObject.constructor.name == 'Fruta') {
-        const frutaRemoverX = this.jogador.head.x;
-        const frutaRemoverY = this.jogador.head.y;
-  
-        this.jogador.comer();
-        this.frutas = this.frutas.filter(fruta => fruta.x != frutaRemoverX || fruta.y != frutaRemoverY);
-      } else if (collidedObject.constructor.name == 'NoCauda') {
-        this.endGame();
-      }
-    }
-
-    if (this.frutas.length == 0) {
-      this.spawnFrutas();
-    }
-
     this.resetMatriz();
     this.loadObjectsToMatriz();
   }
@@ -63,13 +35,16 @@ class Tabuleiro {
 
   spawnFrutas() {
     for (let i = 0; i < Math.max(5, parseInt(Math.random() * 20, 10)); i++) {
-
-      const x = parseInt(Math.random() * this.width, 10);
-      const y = parseInt(Math.random() * this.height, 10);
-      const fruta = new Fruta(x, y);
-
-      this.frutas.push(fruta)
+      this.spawnFruta();      
     }
+  }
+
+  spawnFruta() {
+    const x = parseInt(Math.random() * this.width, 10);
+    const y = parseInt(Math.random() * this.height, 10);
+    const fruta = new Fruta(x, y);
+
+    this.frutas.push(fruta);
   }
 
   resetMatriz() {
@@ -81,9 +56,8 @@ class Tabuleiro {
       }
     }
   }
-
-  atualizarPosicaoJogador(x, y) {
-    this.jogador.head.atualizarPosicao(x, y);
-    this.step();
+  
+  isJogadorTocouBorda() {
+    return this.jogador.head.x >= this.width || this.jogador.head.x < 0 || this.jogador.head.y >= this.height || this.jogador.head.y < 0;
   }
 }

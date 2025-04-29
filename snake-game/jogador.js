@@ -34,23 +34,25 @@ class NoCauda extends GameObject {
 
 class Jogador {
   head;
-  direcao = { x: 1, y: 0 };
+  direcao
 
-  constructor(x, y, canvasContext) {
-    this.head = new NoCauda(x, y, canvasContext);
+  constructor(x, y) {
+    this.head = new NoCauda(x, y);
+    
+    this.head.addNo();
   }
 
-  setCanvasContent(canvasContext) {
-    let noAtual = this.head;
+  atualizarPosicao() {
+    let x = this.head.x + this.direcao.incrementoX;
+    let y = this.head.y + this.direcao.incrementoY;
 
-    while (noAtual) {
-      noAtual.canvasContext = canvasContext;
-      noAtual = noAtual.anterior;
+    this.head.atualizarPosicao(x, y);
+  }
+
+  mudarDirecao(direcao) {
+    if (!this.direcao?.isOposta(direcao)) {
+      this.direcao = direcao;
     }
-  }
-
-  atualizarPosicao(x, y) {
-    this.head.atualizarPosicao(x, y)
   }
 
   comer() {

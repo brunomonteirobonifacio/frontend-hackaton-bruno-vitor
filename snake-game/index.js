@@ -3,30 +3,47 @@ const SCALE = 15;
 function init() {
   const tabuleiroCanvas = document.getElementById('game-board');
   
-  const jogador = new Jogador(5, 5);
   const tabuleiro = new Tabuleiro(tabuleiroCanvas, SCALE);
+  const jogador = new Jogador(5, 5);
+  tabuleiro.jogador = jogador;
+  
   const renderer = new Renderer(tabuleiro, tabuleiroCanvas);
   renderer.setScale(SCALE);
 
-  tabuleiro.jogador = jogador;
-  tabuleiro.start();
-  setInterval(() => tabuleiro.step(), 1000)
-  renderer.render();
+  const game = new Game(tabuleiro);
+  game.addStepObserver(renderer);
   
-  observeTeclado(tabuleiro, renderer);
+  observeTeclado(game);
+  console.log(Direcoes.ESQUERDA.isOposta(Direcoes.DIREITA))
 }
 
-function observeTeclado(tabuleiro, renderer) {
+function observeTeclado(game) {
   document.addEventListener('keydown', (event) => {
-    const moveX = (event.key == 'ArrowRight') - (event.key == 'ArrowLeft');
-    const moveY = (event.key == 'ArrowDown') - (event.key == 'ArrowUp');
+    const tecladoAction = TECLADO_ACTIONS[event.key];
 
-    if (moveX || moveY) {
-      tabuleiro.atualizarPosicaoJogador(tabuleiro.jogador.head.x + moveX, tabuleiro.jogador.head.y + moveY);
+    if (tecladoAction) {
+      tecladoAction(game);
 
+      if (!game.isRunning()) {
+        game.start();
+      }
     }
-    renderer.render();    
   })
+}
+
+const TECLADO_ACTIONS = {
+  ArrowRight: (game) => {
+    game.tabuleiro.jogador.mudarDirecao(Direcoes.DIREITA);
+  },
+  ArrowLeft: (game) => {
+    game.tabuleiro.jogador.mudarDirecao(Direcoes.ESQUERDA);
+  },
+  ArrowUp: (game) => {
+    game.tabuleiro.jogador.mudarDirecao(Direcoes.CIMA);
+  },
+  ArrowDown: (game) => {
+    game.tabuleiro.jogador.mudarDirecao(Direcoes.BAIXO);
+  }
 }
 
 init();
