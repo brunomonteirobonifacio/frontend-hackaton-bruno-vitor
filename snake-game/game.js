@@ -1,24 +1,19 @@
-class Game {
+class Game extends EventEmitter {
   tabuleiro;
   gameRun;
   speed = 1;
-  stepObservers = [];
 
   constructor(tabuleiro) {
+    super();
     this.tabuleiro = tabuleiro;
   }
 
-  start() {
+  setup() {
     this.tabuleiro.start();
-    this.gameRun = setInterval(() => {
-      this.step();
-    }, 200 / this.speed)
   }
 
   endGame() {
-    alert('Game Over');
-    // history.go(0);
-    clearInterval(this.gameRun);
+    this.emit('gameOver');
   }
 
   step() {
@@ -46,19 +41,67 @@ class Game {
 
     this.tabuleiro.resetMatriz();
     this.tabuleiro.loadObjectsToMatriz();
-
-    this.notifyAll(this.stepObservers);
-  }
-
-  addStepObserver(observer) {
-    this.stepObservers.push(observer)
-  }
-
-  notifyAll(observers) {
-    observers.forEach(observer => observer.update());
   }
 
   isRunning() {
     return this.gameRun != null;
+  }
+}
+
+class GameLoop {
+  game;
+  renderer;
+  speed = 1;
+
+  constructor(game, renderer) {
+    this.game = game;
+    this.renderer = renderer;
+
+    game.on('gameOver', () => this.endGame());
+  }
+
+  bootstrap() {
+    this.game.setup();
+    this.renderer.render();
+  }
+
+  start() {
+    this.gameRun = setInterval(() => {
+      this.game.step();
+      this.renderer.render();
+    }, 200 / this.speed);
+
+    this.observeTeclado(this.game);
+  }
+
+  endGame() {
+    alert('Game Over');
+    clearInterval(this.gameRun);
+    history.go(0);
+  }
+
+  observeTeclado(game) {
+    document.addEventListener('keydown', (event) => {
+      const tecladoAction = TECLADO_ACTIONS[event.key];
+  
+      if (tecladoAction) {
+        tecladoAction(game);
+      }
+    })
+  }
+}
+
+const TECLADO_ACTIONS = {
+  ArrowRight: (game) => {
+    game.tabuleiro.jogador.mudarDirecao(Direcoes.DIREITA);
+  },
+  ArrowLeft: (game) => {
+    game.tabuleiro.jogador.mudarDirecao(Direcoes.ESQUERDA);
+  },
+  ArrowUp: (game) => {
+    game.tabuleiro.jogador.mudarDirecao(Direcoes.CIMA);
+  },
+  ArrowDown: (game) => {
+    game.tabuleiro.jogador.mudarDirecao(Direcoes.BAIXO);
   }
 }

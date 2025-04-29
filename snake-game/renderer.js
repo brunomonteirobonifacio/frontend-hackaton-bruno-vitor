@@ -1,10 +1,8 @@
-// TODO: essa classe não deve ser um Observer, fica muito acoplado; verificar melhor como corrigir
-class Renderer extends Observer {
+class Renderer {
   tabuleiro;
   canvasContext;
 
   constructor(tabuleiro, canvas) {
-    super();
     this.tabuleiro = tabuleiro;
     this.canvasContext = canvas.getContext('2d');
   }
@@ -30,10 +28,5 @@ class Renderer extends Observer {
 
   clearCanvas() {
     this.canvasContext.clearRect(0, 0, this.tabuleiro.width, this.tabuleiro.height)
-  }
-
-  // TODO: OBSERVER, VERIFICAR SE DEVE FICAR AQUI
-  update() {
-    this.render();
   }
 }
