@@ -34,7 +34,7 @@ class NoCauda extends GameObject {
 
 class Jogador {
   head;
-  direcao
+  direcao = Direcoes.DIREITA;
 
   constructor(x, y) {
     this.head = new NoCauda(x, y);
@@ -43,8 +43,8 @@ class Jogador {
   }
 
   atualizarPosicao() {
-    let x = this.head.x + this.direcao.incrementoX;
-    let y = this.head.y + this.direcao.incrementoY;
+    let x = this.head.x + (this.direcao?.incrementoX ?? 0);
+    let y = this.head.y + (this.direcao?.incrementoY ?? 0);
 
     this.head.atualizarPosicao(x, y);
   }
