@@ -1,11 +1,9 @@
-const MEDIDA_TO_PIXEL = 5;
 class Tabuleiro {
   width;
   height;
   matriz = [];
   jogador;
   frutas = [];
-  endGameObservers = [];
 
   constructor(tabuleiroCanvas, scale) {
     this.width = tabuleiroCanvas.getAttribute('width') / scale;
