@@ -1,6 +1,8 @@
 class Game extends EventEmitter {
   tabuleiro;
   gameRun;
+  highScore;
+  score;
   speed = 1;
 
   constructor(tabuleiro) {
@@ -9,10 +11,16 @@ class Game extends EventEmitter {
   }
 
   setup() {
+    this.score = 0;
+    this.highScore = parseInt(sessionStorage.getItem('highScore') ?? 0)
     this.tabuleiro.start();
   }
 
   endGame() {
+    if (this.highScore < this.score) {
+      sessionStorage.setItem('highScore', this.score)
+    }
+
     this.emit('gameOver');
   }
 
@@ -23,14 +31,16 @@ class Game extends EventEmitter {
       return;
     }
 
+    // TODO: melhorar para fazer as verificações necessárias na clase tabuleiro
     if (this.tabuleiro.matriz[this.tabuleiro.jogador.head.y][this.tabuleiro.jogador.head.x]) {
       const collidedObject = this.tabuleiro.matriz[this.tabuleiro.jogador.head.y][this.tabuleiro.jogador.head.x];
       if (collidedObject.constructor.name == 'Fruta') {
         this.tabuleiro.jogador.comer();
+        this.score += 1
         this.tabuleiro.frutas = this.tabuleiro.frutas.filter(fruta => fruta.x != collidedObject.x || fruta.y != collidedObject.y);
 
         this.tabuleiro.spawnFruta();
-      } else if (collidedObject.constructor.name == 'NoCauda') {
+      } else if (this.tabuleiro.jogador.direcao && collidedObject.constructor.name == 'NoCauda') {
         this.endGame();
       }
     }
@@ -42,16 +52,13 @@ class Game extends EventEmitter {
     this.tabuleiro.resetMatriz();
     this.tabuleiro.loadObjectsToMatriz();
   }
-
-  isRunning() {
-    return this.gameRun != null;
-  }
 }
 
 class GameLoop {
   game;
   renderer;
   speed = 1;
+  gameRun;
 
   constructor(game, renderer) {
     this.game = game;
@@ -88,6 +95,10 @@ class GameLoop {
         tecladoAction(game);
       }
     })
+  }
+
+  isRunning() {
+    return this.gameRun != null;
   }
 }
 
