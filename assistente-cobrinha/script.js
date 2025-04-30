@@ -22,6 +22,7 @@ function falar(frase) {
     }
   }
 
+
   function mostrarHora() {
     const hora = new Date().toLocaleTimeString();
     const frases = [
@@ -45,3 +46,19 @@ function falar(frase) {
       falar("Seu navegador é do tempo do IE6? Não tem nem geolocalização...");
     }
   }
+
+  window.addEventListener('DOMContentLoaded', () => {
+    const audio = document.getElementById('musicaFundo');
+    audio.volume = 0.2; // volume baixo (0.0 a 1.0)
+  });
+
+  document.getElementById('botaoMusica').addEventListener('click', () => {
+    const audio = document.getElementById('musicaFundo');
+  
+    if (audio.paused) {
+      audio.volume = 0.2; // define o volume baixo
+      audio.play().catch(err => console.log("Erro ao tocar a música:", err));
+    } else {
+      audio.pause();
+    }
+  });

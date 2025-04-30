@@ -53,3 +53,26 @@ body {
   button:hover {
     background-color: #fb8c00;
   }
+
+  audio {
+    display: none;
+  }
+  #botaoMusica {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    background-color: #e63946;
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    z-index: 1000; 
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s;
+  }
+  
+  #botaoMusica:hover {
+    background-color: #d62828;
+  }
