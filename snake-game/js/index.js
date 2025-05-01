@@ -12,6 +12,14 @@ function init() {
   renderer.setScale(SCALE);
 
   gameLoop = new GameLoop(new Game(tabuleiro), renderer);
+
+  // TODO: verificar se esse é realmente o melhor lugar para deixar isso
+  gameLoop.game.on('update', () => {
+    if (gameLoop.game.status == GameStatus.GAME_OVER) {
+      gameLoop.endGame();
+    }
+  });
+  
   gameLoop.bootstrap();
   
   startGame();
