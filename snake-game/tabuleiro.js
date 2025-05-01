@@ -21,10 +21,16 @@ class Tabuleiro {
   }
 
   loadObjectsToMatriz() {
+    this.loadFrutasToMatriz();
+    this.loadJogadorToMatriz();
+  }
+
+  loadFrutasToMatriz() {
+    this.frutas.forEach(fruta => this.matriz[fruta.y][fruta.x] = fruta);
+  }
+
+  loadJogadorToMatriz() {
     let noAtual = this.jogador.head;
-
-    this.frutas.forEach(fruta => this.matriz[fruta.y][fruta.x] = fruta)
-
     while (noAtual) {
       this.matriz[noAtual.y][noAtual.x] = noAtual
       noAtual = noAtual.anterior;
