@@ -99,11 +99,6 @@ class GameLoop {
   }
 
   start() {
-    this.gameRun = setInterval(() => {
-      this.game.step();
-      this.renderer.render();
-    }, 200 / this.speed);
-
     this.observeTeclado(this.game);
   }
 
