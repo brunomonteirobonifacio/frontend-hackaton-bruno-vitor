@@ -10,11 +10,13 @@ class Renderer {
   render() {
     this.clearCanvas();
 
-    for (let y = 0; y < this.tabuleiro.height; y++) {
-      for (let x = 0; x < this.tabuleiro.width; x++) {
-        const currentObject = this.tabuleiro.matriz[y][x]
+    const matriz = this.tabuleiro.matriz.slice();
+    
+    for (let y = 0; y < matriz.length; y++) {
+      for (let x = 0; x < matriz[y].length; x++) {
+        const currentObject = matriz[y][x];
 
-        if (currentObject != null && currentObject.__proto__.__proto__ == GameObject.prototype) {
+        if (currentObject && currentObject.getColor) {
           this.canvasContext.fillStyle = currentObject.getColor();
           this.canvasContext.fillRect(x, y, 1, 1);
         }
@@ -27,6 +29,6 @@ class Renderer {
   }
 
   clearCanvas() {
-    this.canvasContext.clearRect(0, 0, this.tabuleiro.width, this.tabuleiro.height)
+    this.canvasContext.clearRect(0, 0, this.tabuleiro.matriz.length, this.tabuleiro.matriz[0].length)
   }
 }
