@@ -9,7 +9,6 @@ class Game extends EventEmitter {
   gameRun;
   highScore;
   score;
-  speed = 1;
   status = GameStatus.NOT_STARTED;
 
   constructor(tabuleiro) {
