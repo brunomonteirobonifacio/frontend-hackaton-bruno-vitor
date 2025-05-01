@@ -27,16 +27,28 @@ class NoCauda extends GameObject {
     this.anterior = new NoCauda(this.x, this.y)
   }
 
+  removeAllAnteriores() {
+    if (this.anterior) {
+      this.anterior.removeAllAnteriores();
+    }
+
+    this.anterior = null;
+  }
+
   getColor() {
     return 'green'
   }
 }
 
 class Jogador {
+  xInicial;
+  yInicial;
   head;
   direcao;
 
   constructor(x, y) {
+    this.xInicial = x;
+    this.yInicial = y;
     this.head = new NoCauda(x, y);
     
     this.head.addNo();
@@ -60,6 +72,14 @@ class Jogador {
   }
 
   crescer() {
+    this.head.addNo();
+  }
+
+  reset() {
+    this.head.removeAllAnteriores();
+
+    this.head = new NoCauda(this.xInicial, this.yInicial);
+    this.direcao = null;
     this.head.addNo();
   }
 }
