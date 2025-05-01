@@ -100,10 +100,6 @@ class GameLoop {
       }
     })
   }
-
-  isRunning() {
-    return this.gameRun != null;
-  }
 }
 
 const TECLADO_ACTIONS = {
