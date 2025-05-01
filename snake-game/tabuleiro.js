@@ -55,7 +55,33 @@ class Tabuleiro {
     }
   }
   
-  isJogadorTocouBorda() {
+  isJogadorColidiuBorda() {
     return this.jogador.head.x >= this.width || this.jogador.head.x < 0 || this.jogador.head.y >= this.height || this.jogador.head.y < 0;
+  }
+
+  isJogadorColidiuCauda() {
+    return this.jogador.direcao && this.getObjectJogadorColidiu()?.constructor.name == NoCauda.name;
+  }
+
+  getFrutaJogadorColidiu() {
+    const collidedObject = this.getObjectJogadorColidiu();
+
+    return collidedObject?.constructor.name == Fruta.name
+      ? collidedObject
+      : null;
+  }
+
+  getObjectJogadorColidiu() {
+    if (this.isJogadorColidiuBorda()) {
+      throw new Error('Jogador fora do tabuleiro');
+    }
+
+    return this.matriz[this.jogador.head.y][this.jogador.head.x];
+  }
+
+  removeFruta(fruta) {
+    if (fruta) {
+      this.frutas.splice(this.frutas.indexOf(fruta), 1);
+    }
   }
 }

@@ -32,30 +32,36 @@ class Game extends EventEmitter {
 
     if (this.highScore < this.score) {
       sessionStorage.setItem('highScore', this.score)
+      this.highScore = this.score;
     }
+  }
 
-    this.emit('gameOver');
+  reset() {
+    this.setup();
+    this.start();
+  }
+
+  update() {
+    if (this.status == GameStatus.RUNNING) {
+      this.step();
+      this.emit('update');
+    }
   }
 
   step() {
     this.tabuleiro.jogador.atualizarPosicao();
-    if (this.tabuleiro.isJogadorTocouBorda()) {
+    if (this.tabuleiro.isJogadorColidiuBorda() || this.tabuleiro.isJogadorColidiuCauda()) {
       this.endGame();
       return;
     }
 
-    // TODO: melhorar para fazer as verificações necessárias na clase tabuleiro
-    if (this.tabuleiro.matriz[this.tabuleiro.jogador.head.y][this.tabuleiro.jogador.head.x]) {
-      const collidedObject = this.tabuleiro.matriz[this.tabuleiro.jogador.head.y][this.tabuleiro.jogador.head.x];
-      if (collidedObject.constructor.name == 'Fruta') {
-        this.tabuleiro.jogador.comer();
-        this.score += 1
-        this.tabuleiro.frutas = this.tabuleiro.frutas.filter(fruta => fruta.x != collidedObject.x || fruta.y != collidedObject.y);
+    const collidedFruta = this.tabuleiro.getFrutaJogadorColidiu();
+    if (collidedFruta) {
+      this.tabuleiro.jogador.comer();
+      this.score += 1
 
-        this.tabuleiro.spawnFruta();
-      } else if (this.tabuleiro.jogador.direcao && collidedObject.constructor.name == 'NoCauda') {
-        this.endGame();
-      }
+      this.tabuleiro.removeFruta(collidedFruta)
+      this.tabuleiro.spawnFruta();
     }
 
     if (this.tabuleiro.frutas.length == 0) {
@@ -93,13 +99,14 @@ class GameLoop {
     if (!this.gameRun) {
       this.gameRun = setInterval(() => {
         this.game.update();
-    this.renderer.render();
+        this.renderer.render();
       }, 200 / this.speed);
     }
   }
 
   start() {
     this.observeTeclado(this.game);
+    this.game.start();
   }
 
   endGame() {
