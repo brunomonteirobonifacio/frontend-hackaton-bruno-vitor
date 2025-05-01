@@ -69,7 +69,13 @@ class GameLoop {
 
   bootstrap() {
     this.game.setup();
+
+    if (!this.gameRun) {
+      this.gameRun = setInterval(() => {
+        this.game.update();
     this.renderer.render();
+      }, 200 / this.speed);
+    }
   }
 
   start() {
@@ -82,9 +88,7 @@ class GameLoop {
   }
 
   endGame() {
-    alert('Game Over');
-    clearInterval(this.gameRun);
-    history.go(0);
+    alert('Game Over'); // placeholder
   }
 
   observeTeclado(game) {
