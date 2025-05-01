@@ -11,14 +11,18 @@
 </head>
 <body>
   <main class="main">
+    <div id="game-scoreboard" style="display: flex; flex-direction: row; align-items: space-between;">
+      <div>Pontuação: <span id="score"></span></div>
+      <div>Recorde: <span id="high-score"></span></div>
+    </div>
     <canvas id="game-board" width="480" height="480"></canvas>
     <button id="start-game-btn">Start</button>
   </main>
 </body>
 <script src="js/engine/renderer.js"></script>
+<script src="js/utils/event-emitter.js"></script>
 <script src="js/game/game-object.js"></script>
 <script src="js/game/model/direcao.js"></script>
-<script src="js/utils/event-emitter.js"></script>
 <script src="js/game/model/jogador.js"></script>
 <script src="js/game/model/fruta.js"></script>
 <script src="js/game/model/tabuleiro.js"></script>
