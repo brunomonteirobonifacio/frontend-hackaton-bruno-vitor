@@ -1,9 +1,16 @@
+const GameStatus = {
+  NOT_STARTED: 'NOT_STARTED',
+  RUNNING: 'RUNNING',
+  GAME_OVER: 'GAME_OVER'
+}
+
 class Game extends EventEmitter {
   tabuleiro;
   gameRun;
   highScore;
   score;
   speed = 1;
+  status = GameStatus.NOT_STARTED;
 
   constructor(tabuleiro) {
     super();
@@ -16,7 +23,13 @@ class Game extends EventEmitter {
     this.tabuleiro.start();
   }
 
+  start() {
+    this.status = GameStatus.RUNNING;
+  }
+
   endGame() {
+    this.status = GameStatus.GAME_OVER;
+
     if (this.highScore < this.score) {
       sessionStorage.setItem('highScore', this.score)
     }
@@ -62,9 +75,16 @@ class GameLoop {
 
   constructor(game, renderer) {
     this.game = game;
+
+    this.game.on('update', () => {
+      if (this.game.status == GameStatus.GAME_OVER) {
+        this.endGame();
+      }
+    });
+
     this.renderer = renderer;
 
-    game.on('gameOver', () => this.endGame());
+    this.bootstrap();
   }
 
   bootstrap() {
