@@ -6,7 +6,6 @@ const GameStatus = {
 
 class Game extends EventEmitter {
   tabuleiro;
-  gameRun;
   highScore;
   score;
   status = GameStatus.NOT_STARTED;
