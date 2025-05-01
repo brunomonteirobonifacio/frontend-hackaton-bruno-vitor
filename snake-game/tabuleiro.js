@@ -4,6 +4,7 @@ class Tabuleiro {
   matriz = [];
   jogador;
   frutas = [];
+  started = false;
 
   constructor(tabuleiroCanvas, scale) {
     this.width = tabuleiroCanvas.getAttribute('width') / scale;
@@ -15,9 +16,20 @@ class Tabuleiro {
   }
 
   start() {
+    if (this.started) {
+      this.reset();
+    }
+
     this.spawnFrutas();
     this.resetMatriz();
     this.loadObjectsToMatriz();
+
+    this.started = true;
+  }
+
+  reset() {
+    this.frutas = [];
+    this.jogador.reset();
   }
 
   loadObjectsToMatriz() {
