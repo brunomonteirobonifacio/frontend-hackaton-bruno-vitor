@@ -88,8 +88,6 @@ class GameLoop {
     });
 
     this.renderer = renderer;
-
-    this.bootstrap();
   }
 
   bootstrap() {

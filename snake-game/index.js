@@ -12,6 +12,8 @@ function init() {
   renderer.setScale(SCALE);
 
   gameLoop = new GameLoop(new Game(tabuleiro), renderer);
+  gameLoop.bootstrap();
+  
   startGame();
 }
 
