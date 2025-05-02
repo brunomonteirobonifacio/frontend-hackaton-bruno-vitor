@@ -1,8 +1,9 @@
 class GameLoop {
   game;
   renderer;
-  speed = 1;
+  incrementSpeed = 0;
   gameRun;
+  incrementSpeedStrategy = IncrementSpeedStrategies.DONT_INCREMENT;
 
   constructor(game, renderer) {
     this.game = game;
@@ -13,16 +14,27 @@ class GameLoop {
     this.game.setup();
 
     if (!this.gameRun) {
-      this.gameRun = setInterval(() => {
-        this.game.update();
-        this.renderer.render();
-      }, 200 / this.speed);
+      this.startGameRun();
     }
   }
 
   start() {
-    this.observeTeclado(this.game);
+    this.incrementSpeed = 0;
+    this.game.setup();
     this.game.start();
+
+    if (this.incrementSpeedStrategy) {
+      this.incrementSpeedStrategy.apply(this)
+    }
+  }
+
+  startGameRun() {
+    this.gameRun = setTimeout(() => {
+      this.game.update();
+      this.renderer.render();
+
+      this.startGameRun();
+    }, 200 / (1 + this.incrementSpeed));
   }
 
   endGame() {

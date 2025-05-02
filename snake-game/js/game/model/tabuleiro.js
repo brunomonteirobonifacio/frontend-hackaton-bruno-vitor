@@ -85,8 +85,8 @@ class Tabuleiro {
     const collidedObject = this.getObjectJogadorColidiu();
 
     return collidedObject?.constructor.name == Fruta.name
-      ? collidedObject
-      : null;
+        ? collidedObject
+        : null;
   }
 
   getObjectJogadorColidiu() {

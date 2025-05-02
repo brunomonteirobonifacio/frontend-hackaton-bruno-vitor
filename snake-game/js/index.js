@@ -14,6 +14,7 @@ function init() {
 
   game = new Game(tabuleiro);
   gameLoop = new GameLoop(game, new KeyboardListener(), renderer);
+  gameLoop.incrementSpeedStrategy = IncrementSpeedStrategies.BY_TAIL_LENGTH;
 
   // TODO: verificar se esse é realmente o melhor lugar para deixar isso
   game.on('update', () => {
