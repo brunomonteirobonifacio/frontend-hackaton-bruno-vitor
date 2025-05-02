@@ -24,8 +24,9 @@ function init() {
   });
 
   game.on('update', upadateScoreboard)
-  
   gameLoop.bootstrap();
+
+  window.Notification.requestPermission();
   
   startGame();
 }
