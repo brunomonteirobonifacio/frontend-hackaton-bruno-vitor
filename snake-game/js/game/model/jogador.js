@@ -43,6 +43,7 @@ class NoCauda extends GameObject {
 class Jogador {
   xInicial;
   yInicial;
+  tamanhoInicialCauda = 2;
   head;
   direcao;
 
@@ -50,8 +51,8 @@ class Jogador {
     this.xInicial = x;
     this.yInicial = y;
     this.head = new NoCauda(x, y);
-    
-    this.head.addNo();
+
+    this.setCaudaToTamanhoInicial();
   }
 
   atualizarPosicao() {
@@ -67,10 +68,6 @@ class Jogador {
     }
   }
 
-  comer() {
-    this.crescer();
-  }
-
   crescer() {
     this.head.addNo();
   }
@@ -80,6 +77,13 @@ class Jogador {
 
     this.head = new NoCauda(this.xInicial, this.yInicial);
     this.direcao = null;
-    this.head.addNo();
+    
+    this.setCaudaToTamanhoInicial();
+  }
+
+  setCaudaToTamanhoInicial() {
+    for (let i = 0; i < this.tamanhoInicialCauda - 1; i++) {
+      this.crescer();
+    }
   }
 }
