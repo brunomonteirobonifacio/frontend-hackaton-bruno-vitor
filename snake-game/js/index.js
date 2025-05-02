@@ -16,7 +16,7 @@ function init() {
   gameLoop = new GameLoop(game, new KeyboardListener(), renderer);
   gameLoop.incrementSpeedStrategy = IncrementSpeedStrategies.BY_TAIL_LENGTH;
 
-  // TODO: verificar se esse é realmente o melhor lugar para deixar isso
+  // TODO: verificar se é necessário esse listener, caso seja feita uma tela de game over ele será obsoleto
   game.on('update', () => {
     if (game.status == GameStatus.GAME_OVER) {
       gameLoop.endGame();

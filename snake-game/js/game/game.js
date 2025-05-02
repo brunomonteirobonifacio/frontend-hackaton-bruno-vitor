@@ -17,7 +17,7 @@ class Game extends EventEmitter {
 
   setup() {
     this.score = 0;
-    this.highScore = parseInt(sessionStorage.getItem('highScore') ?? 0)
+    this.highScore = parseInt(localStorage.getItem('highScore') ?? 0)
     this.tabuleiro.start();
   }
 
@@ -29,8 +29,12 @@ class Game extends EventEmitter {
     this.status = GameStatus.GAME_OVER;
 
     if (this.highScore < this.score) {
-      sessionStorage.setItem('highScore', this.score)
+      localStorage.setItem('highScore', this.score)
       this.highScore = this.score;
+      
+      if (Notification.permission == 'granted') {
+        new Notification(`Novo recorde alcançado! ${this.highScore}pts`)
+      }
     }
   }
 
