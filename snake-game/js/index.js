@@ -14,7 +14,7 @@ function init() {
 
   game = new Game(tabuleiro);
   gameLoop = new GameLoop(game, new KeyboardListener(), renderer);
-  gameLoop.incrementSpeedStrategy = IncrementSpeedStrategies.BY_TAIL_LENGTH;
+  gameLoop.incrementSpeedStrategy = IncrementSpeedStrategies.BY_SCORE;
 
   // TODO: verificar se é necessário esse listener, caso seja feita uma tela de game over ele será obsoleto
   game.on('update', () => {
@@ -45,3 +45,4 @@ function upadateScoreboard() {
 init();
 
 document.getElementById('start-game-btn').addEventListener('click', startGame)
+document.getElementById('increment-speed-strategy-selector').addEventListener('change', (event) => gameLoop.incrementSpeedStrategy = IncrementSpeedStrategies[event.target.value])

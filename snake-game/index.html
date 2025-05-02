@@ -14,8 +14,11 @@
     </div>
     <canvas id="game-board" width="480" height="480"></canvas>
     <button id="start-game-btn">REINICIAR</button>
+
+    <label for="increment-speed-strategy-selector">Aumentar a velocidade de acordo com:</label>
     <select name="increment-speed-strategy" id="increment-speed-strategy-selector">
-      <option value="BY_TAIL_SIZE">TAMANHO DA CAUDA</option>
+      <option value="DONT_INCREMENT">NÃO AUMENTAR VELOCIDADE</option>
+      <option value="BY_SCORE">PONTUAÇÃO</option>
       <option value="BY_RUN_TIME">TEMPO DA PARTIDA</option>
     </select>
   </main>
