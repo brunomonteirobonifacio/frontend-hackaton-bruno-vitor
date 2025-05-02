@@ -18,13 +18,31 @@ function init() {
   gameLoop.incrementSpeedStrategy = IncrementSpeedStrategies.BY_SCORE;
 
   game.on('update', () => {
-    if (game.status == GameStatus.GAME_OVER) {
-      gameLoop.endGame();
-    }
-  });
+    upadatePlacar();
 
-  game.on('update', upadateScoreboard)
-  game.on('comeu', () => document.getElementById('som-cobrinha-comeu').play())
+    if (game.status == GameStatus.GAME_OVER) {
+      // TODO: MOSTRAR TELA DE GAME OVER (verificar se vai ser setado aqui ou em Game)
+      const audioGameOver = document.getElementById('game-over');
+      const audioMusica = document.getElementById('musica-fundo');
+      
+      if (!audioMusica.paused || !audioMusica.ended) {
+        audioMusica.pause();
+        audioMusica.currentTime = 0;
+      }
+      
+      audioGameOver.play();
+    }
+  })
+
+  game.on('comeu', () => {
+    const audio = document.getElementById('som-cobrinha-comeu');
+    audio.volume = 0.5
+
+    if (!audio.paused && !audio.ended) {
+      audio.currentTime = 0;
+    }
+    audio.play();
+  })
   gameLoop.bootstrap();
 
   window.Notification.requestPermission();
