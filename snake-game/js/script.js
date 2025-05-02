@@ -4,7 +4,7 @@ let tabuleiro;
 let renderer;
 let gameLoop;
 let game;
-let playMusic = true;
+let playMusic = false;
 
 function init() {
   tabuleiro = new Tabuleiro(tabuleiroCanvas.clientWidth, tabuleiroCanvas.clientHeight, SCALE);
@@ -20,7 +20,6 @@ function init() {
     upadatePlacar();
 
     if (game.status == GameStatus.GAME_OVER) {
-      // TODO: MOSTRAR TELA DE GAME OVER (verificar se vai ser setado aqui ou em Game)
       const audioGameOver = document.getElementById('game-over');
       const audioMusica = document.getElementById('musica-fundo');
       
@@ -51,13 +50,13 @@ function init() {
 
 function startGame() {
   if (playMusic) {
-    window.onkeydown = () => {
-      const audio = document.getElementById('musica-fundo');
-      audio.volume = 0.2;
-      
-      audio.play();
-    }
+    const audio = document.getElementById('musica-fundo');
+
+    audio.volume = 0.2;
+    audio.currentTime = 0;
+    audio.play();
   }
+  
   gameLoop.start();
 }
 
