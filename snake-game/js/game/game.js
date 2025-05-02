@@ -59,7 +59,6 @@ class Game extends EventEmitter {
       this.score += 1
 
       this.tabuleiro.removeFruta(collidedFruta)
-      this.tabuleiro.spawnFruta();
     }
 
     if (this.tabuleiro.frutas.length == 0) {
