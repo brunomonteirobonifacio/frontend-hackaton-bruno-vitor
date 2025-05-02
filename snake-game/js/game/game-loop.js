@@ -3,11 +3,13 @@ class GameLoop {
   renderer;
   incrementSpeed = 0;
   gameRun;
+  keyboardListener;
   incrementSpeedStrategy = IncrementSpeedStrategies.DONT_INCREMENT;
 
-  constructor(game, renderer) {
+  constructor(game, keyboardListener, renderer) {
     this.game = game;
     this.renderer = renderer;
+    this.keyboardListener = keyboardListener;
   }
 
   bootstrap() {
@@ -19,6 +21,7 @@ class GameLoop {
   }
 
   start() {
+    this.keyboardListener.startListening(true);
     this.incrementSpeed = 0;
     this.game.setup();
     this.game.start();
@@ -30,6 +33,7 @@ class GameLoop {
 
   startGameRun() {
     this.gameRun = setTimeout(() => {
+      this.processUserInput();
       this.game.update();
       this.renderer.render();
 
