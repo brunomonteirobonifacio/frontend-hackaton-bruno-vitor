@@ -4,6 +4,7 @@ let tabuleiro;
 let renderer;
 let gameLoop;
 let game;
+let playMusic = true;
 
 function init() {
   tabuleiro = new Tabuleiro(tabuleiroCanvas, SCALE);
@@ -16,7 +17,6 @@ function init() {
   gameLoop = new GameLoop(game, new KeyboardListener(), renderer);
   gameLoop.incrementSpeedStrategy = IncrementSpeedStrategies.BY_SCORE;
 
-  // TODO: verificar se é necessário esse listener, caso seja feita uma tela de game over ele será obsoleto
   game.on('update', () => {
     if (game.status == GameStatus.GAME_OVER) {
       gameLoop.endGame();
@@ -33,10 +33,16 @@ function init() {
 }
 
 function startGame() {
+  if (playMusic) {
+    const audio = document.getElementById('musica-fundo');
+    audio.volume = 0.2;
+    audio.currentTime = 0;
+    audio.play();
+  }
   gameLoop.start();
 }
 
-function upadateScoreboard() {
+function upadatePlacar() {
   const score = game.score;
   const highScore = game.highScore;
   document.getElementById('score').textContent = score;
@@ -52,6 +58,8 @@ function toggleMusica() {
   } else {
     audio.pause();
   }
+
+  playMusic = !playMusic;
 }
 
 init();
@@ -59,5 +67,3 @@ init();
 document.getElementById('start-game-btn').addEventListener('click', startGame)
 document.getElementById('increment-speed-strategy-selector').addEventListener('change', (event) => gameLoop.incrementSpeedStrategy = IncrementSpeedStrategies[event.target.value])
 document.getElementById('toggle-musica').addEventListener('click', toggleMusica);
-
-toggleMusica();
