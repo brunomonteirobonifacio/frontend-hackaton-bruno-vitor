@@ -45,16 +45,16 @@ class GameLoop {
     alert('Game Over'); // placeholder
   }
 
-  observeTeclado(game) {
-    document.addEventListener('keydown', (event) => {
-      const tecladoAction = TECLADO_ACTIONS[event.key];
+  async processUserInput() {
+    const keyPressed = this.keyboardListener.consumeQueue();
 
-      if (tecladoAction) {
-        tecladoAction(game);
-      }
-    });
+    const keyboardAction = TECLADO_ACTIONS[keyPressed];
+    if (keyboardAction) {
+      keyboardAction(this.game);
+    };
   }
 }
+
 const TECLADO_ACTIONS = {
   ArrowRight: (game) => {
     game.tabuleiro.jogador.mudarDirecao(Direcoes.DIREITA);
