@@ -59,6 +59,7 @@ class Game extends EventEmitter {
 
     const collidedFruta = this.tabuleiro.getFrutaJogadorColidiu();
     if (collidedFruta) {
+      this.emit('comeu');
       this.tabuleiro.jogador.crescer();
       this.score += 1
 

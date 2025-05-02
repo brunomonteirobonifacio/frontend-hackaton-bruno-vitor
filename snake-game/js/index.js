@@ -24,6 +24,7 @@ function init() {
   });
 
   game.on('update', upadateScoreboard)
+  game.on('comeu', () => document.getElementById('som-cobrinha-comeu').play())
   gameLoop.bootstrap();
 
   window.Notification.requestPermission();
@@ -42,7 +43,21 @@ function upadateScoreboard() {
   document.getElementById('high-score').textContent = highScore;
 }
 
+function toggleMusica() {
+  const audio = document.getElementById('musica-fundo');
+
+  if (audio.paused) {
+    audio.volume = 0.2;
+    audio.play();
+  } else {
+    audio.pause();
+  }
+}
+
 init();
 
 document.getElementById('start-game-btn').addEventListener('click', startGame)
 document.getElementById('increment-speed-strategy-selector').addEventListener('change', (event) => gameLoop.incrementSpeedStrategy = IncrementSpeedStrategies[event.target.value])
+document.getElementById('toggle-musica').addEventListener('click', toggleMusica);
+
+toggleMusica();
