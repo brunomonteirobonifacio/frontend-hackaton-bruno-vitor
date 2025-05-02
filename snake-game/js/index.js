@@ -15,7 +15,6 @@ function init() {
 
   game = new Game(tabuleiro);
   gameLoop = new GameLoop(game, new KeyboardListener(), renderer);
-  gameLoop.incrementSpeedStrategy = IncrementSpeedStrategies.BY_SCORE;
 
   game.on('update', () => {
     upadatePlacar();
