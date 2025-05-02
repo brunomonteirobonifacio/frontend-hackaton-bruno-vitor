@@ -44,7 +44,8 @@ function init() {
   gameLoop.bootstrap();
 
   window.Notification.requestPermission();
-  
+
+  loadOpcaoSelecionadaIncrementSpeedStrategy();
   startGame();
 }
 
@@ -80,10 +81,25 @@ function toggleMusica() {
   playMusic = !playMusic;
 }
 
+function loadOpcaoSelecionadaIncrementSpeedStrategy() {
+  const selector = document.getElementById('increment-speed-strategy-selector');
+  const opcaoSelecionada = sessionStorage.getItem('incrementSpeedStrategy');
+
+  if (!opcaoSelecionada) {
+    return;
+  }
+
+  for (option of selector.children) {
+    if (option.value == opcaoSelecionada) {
+      option.selected = true;
+    }
+  }
+}
+
 init();
 
 document.getElementById('start-game-btn').addEventListener('click', startGame)
-document.getElementById('increment-speed-strategy-selector').addEventListener('change', (event) => gameLoop.incrementSpeedStrategy = IncrementSpeedStrategies[event.target.value])
+document.getElementById('increment-speed-strategy-selector').addEventListener('change', event => gameLoop.changeIncrementSpeedStrategy(event.target.value))
 document.getElementById('toggle-musica').addEventListener('click', event => {
   toggleMusica();
   event.target.textContent = playMusic ? 'DESLIGAR MUSICA' : 'LIGAR MUSICA';

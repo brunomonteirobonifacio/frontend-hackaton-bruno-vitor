@@ -10,6 +10,11 @@ class GameLoop {
     this.game = game;
     this.renderer = renderer;
     this.keyboardListener = keyboardListener;
+
+    const cachedIncrementSpeedStrategy = sessionStorage.getItem('incrementSpeedStrategy');
+    if (cachedIncrementSpeedStrategy) {
+      this.incrementSpeedStrategy = IncrementSpeedStrategies[cachedIncrementSpeedStrategy]
+    }
   }
 
   bootstrap() {
@@ -52,6 +57,11 @@ class GameLoop {
     if (keyboardAction) {
       keyboardAction(this.game);
     };
+  }
+
+  changeIncrementSpeedStrategy(incrementSpeedStrategyName) {
+    this.incrementSpeedStrategy = IncrementSpeedStrategies[incrementSpeedStrategyName];
+    sessionStorage.setItem('incrementSpeedStrategy', incrementSpeedStrategyName)
   }
 }
 
