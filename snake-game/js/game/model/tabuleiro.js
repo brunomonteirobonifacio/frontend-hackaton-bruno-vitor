@@ -7,9 +7,9 @@ class Tabuleiro {
   maxFrutas = 50;
   started = false;
 
-  constructor(tabuleiroCanvas, scale) {
-    this.width = tabuleiroCanvas.getAttribute('width') / scale;
-    this.height = tabuleiroCanvas.getAttribute('height') / scale;
+  constructor(width, height, scale) {
+    this.width = width / scale;
+    this.height = height / scale;
     
     if (this.width <= 0 || this.height <= 0) {
       throw new Error('Both width and height must be greater than zero')
