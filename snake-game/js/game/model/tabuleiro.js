@@ -50,8 +50,18 @@ class Tabuleiro {
     }
   }
 
-  spawnFrutas() {
-    for (let i = 0; i < Math.max(5, parseInt(Math.random() * 20, 10)); i++) {
+  spawnFrutaRandomBasedOnQtdeFrutasAtual() {
+    this.spawnFrutaOnRandomChance(this.frutas.length);
+  }
+
+  spawnFrutaOnRandomChance(chance = 10) {
+    if (this.frutas.length < this.maxFrutas && parseInt(Math.random() * chance + 1, 10) == chance) {
+      this.spawnFruta()
+    }
+  }
+
+  spawnFrutas(qtdeMinima = 5, qtdeMaxima = 20) {
+    for (let i = 0; i < Math.max(qtdeMinima, parseInt(Math.random() * Math.min(this.maxFrutas, qtdeMaxima), 10)); i++) {
       this.spawnFruta();      
     }
   }
