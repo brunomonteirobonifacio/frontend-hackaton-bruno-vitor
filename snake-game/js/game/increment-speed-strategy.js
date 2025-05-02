@@ -9,7 +9,7 @@ class IncrementSpeedStrategy {
 const IncrementSpeedStrategies = {
   BY_TAIL_LENGTH: new IncrementSpeedStrategy((gameLoop) => {
     gameLoop.game.on('update', () => {
-      gameLoop.incrementSpeed = gameLoop.game.tabuleiro.jogador.tamanho() - (gameLoop.game.tabuleiro.jogador.tamanhoInicial - 1)
+      gameLoop.incrementSpeed = (gameLoop.game.tabuleiro.jogador.tamanho() - (gameLoop.game.tabuleiro.jogador.tamanhoInicial - 1)) * 0.05
     })
   }),
 
