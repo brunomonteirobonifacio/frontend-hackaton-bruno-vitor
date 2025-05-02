@@ -25,7 +25,7 @@ body {
 }
 
 button {
-  margin: 10px;
+  margin: 5px;
   padding: 10px 20px;
   background-color: #ff9800;
   color: white;
@@ -44,7 +44,7 @@ button:hover {
   display: flex;
   justify-content: space-between;
   width: 100%;
-  margin: 20px 0;
+  margin: 10px 0;
 }
 
 .top-buttons-container {
@@ -62,7 +62,7 @@ select, option {
   border: 2px solid #006622;
   background-color: #ffffff;
   color: #006622;
-  margin: 10px 0;
+  margin: 5px 0 10px 0;
   width: 100%;
 }
 
@@ -110,7 +110,7 @@ select:focus, option:focus {
 
 .settings-container {
   width: 100%;
-  margin-top: 20px;
+  margin-top: 10px;
 }
 
 label {
