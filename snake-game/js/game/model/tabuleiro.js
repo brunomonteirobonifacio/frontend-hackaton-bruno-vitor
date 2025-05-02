@@ -4,6 +4,7 @@ class Tabuleiro {
   matriz = [];
   jogador;
   frutas = [];
+  maxFrutas = 50;
   started = false;
 
   constructor(tabuleiroCanvas, scale) {
@@ -20,8 +21,8 @@ class Tabuleiro {
       this.reset();
     }
 
-    this.spawnFrutas();
     this.resetMatriz();
+    this.spawnFrutas();
     this.loadObjectsToMatriz();
 
     this.started = true;
@@ -56,8 +57,16 @@ class Tabuleiro {
   }
 
   spawnFruta() {
-    const x = parseInt(Math.random() * this.width, 10);
-    const y = parseInt(Math.random() * this.height, 10);
+    if (this.frutas.length >= this.maxFrutas) {
+      return;
+    }
+
+    let x, y;
+    while (!this.isPosicaoLivre(x, y)) {
+      x = parseInt(Math.random() * this.width, 10)
+      y = parseInt(Math.random() * this.height, 10);
+    }
+
     const fruta = new Fruta(x, y);
 
     this.frutas.push(fruta);
@@ -101,5 +110,12 @@ class Tabuleiro {
     if (fruta) {
       this.frutas.splice(this.frutas.indexOf(fruta), 1);
     }
+  }
+
+  isPosicaoLivre(x, y) {
+    return x && y
+        && y >= 0 && y < this.height
+        && x >= 0 && x < this.width
+        && !this.matriz[y][x];
   }
 }

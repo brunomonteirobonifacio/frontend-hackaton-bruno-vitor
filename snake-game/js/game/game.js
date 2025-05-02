@@ -55,7 +55,7 @@ class Game extends EventEmitter {
 
     const collidedFruta = this.tabuleiro.getFrutaJogadorColidiu();
     if (collidedFruta) {
-      this.tabuleiro.jogador.comer();
+      this.tabuleiro.jogador.crescer();
       this.score += 1
 
       this.tabuleiro.removeFruta(collidedFruta)
@@ -65,6 +65,8 @@ class Game extends EventEmitter {
     if (this.tabuleiro.frutas.length == 0) {
       this.tabuleiro.spawnFrutas();
     }
+
+    this.tabuleiro.spawnFrutaRandomBasedOnQtdeFrutasAtual();
 
     this.tabuleiro.resetMatriz();
     this.tabuleiro.loadObjectsToMatriz();
