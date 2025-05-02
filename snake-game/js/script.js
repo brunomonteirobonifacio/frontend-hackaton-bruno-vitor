@@ -7,7 +7,7 @@ let game;
 let playMusic = true;
 
 function init() {
-  tabuleiro = new Tabuleiro(tabuleiroCanvas, SCALE);
+  tabuleiro = new Tabuleiro(tabuleiroCanvas.clientWidth, tabuleiroCanvas.clientHeight, SCALE);
   tabuleiro.jogador = new Jogador(5, 5);
   
   renderer = new Renderer(tabuleiro, tabuleiroCanvas);
@@ -51,10 +51,12 @@ function init() {
 
 function startGame() {
   if (playMusic) {
-    const audio = document.getElementById('musica-fundo');
-    audio.volume = 0.2;
-    audio.currentTime = 0;
-    audio.play();
+    window.onkeydown = () => {
+      const audio = document.getElementById('musica-fundo');
+      audio.volume = 0.2;
+      
+      audio.play();
+    }
   }
   gameLoop.start();
 }
@@ -68,9 +70,9 @@ function upadatePlacar() {
 
 function toggleMusica() {
   const audio = document.getElementById('musica-fundo');
+  audio.volume = 0.2;
 
-  if (audio.paused) {
-    audio.volume = 0.2;
+  if (audio.paused || audio.ended) {
     audio.play();
   } else {
     audio.pause();
@@ -83,4 +85,7 @@ init();
 
 document.getElementById('start-game-btn').addEventListener('click', startGame)
 document.getElementById('increment-speed-strategy-selector').addEventListener('change', (event) => gameLoop.incrementSpeedStrategy = IncrementSpeedStrategies[event.target.value])
-document.getElementById('toggle-musica').addEventListener('click', toggleMusica);
+document.getElementById('toggle-musica').addEventListener('click', event => {
+  toggleMusica();
+  event.target.textContent = playMusic ? 'DESLIGAR MUSICA' : 'LIGAR MUSICA';
+});
