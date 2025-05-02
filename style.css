@@ -3,6 +3,8 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  max-width: 480px;
+  width: 100%;
 }
 
 #game-board {
@@ -14,11 +16,12 @@ body {
   font-family: 'Comic Sans MS', cursive, sans-serif;
   background: linear-gradient(to right, #b3ffad, #00ff55);
   margin: 0;
-  padding: 0;
-  height: 100vh;
+  padding: 20px;
+  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
+  box-sizing: border-box;
 }
 
 button {
@@ -37,6 +40,20 @@ button:hover {
   background-color: #e68a00;
 }
 
+.buttons-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin: 20px 0;
+}
+
+.top-buttons-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
 select, option {
   font-family: 'Comic Sans MS', cursive, sans-serif;
   font-size: 16px;
@@ -45,11 +62,60 @@ select, option {
   border: 2px solid #006622;
   background-color: #ffffff;
   color: #006622;
-  margin: 10px;
+  margin: 10px 0;
+  width: 100%;
 }
 
 select:focus, option:focus {
   outline: none;
   border-color: #00aa33;
   box-shadow: 0 0 5px #00ff55;
+}
+
+#score, #high-score {
+  font-size: 24px;
+  font-weight: bold;
+  color: #004d1a;
+  background-color: #ffffffb3;
+  border: 2px solid #006622;
+  padding: 5px 15px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  margin-left: 10px;
+}
+
+.score-container {
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  padding: 0;
+  margin: 0;
+  box-shadow: none;
+}
+
+#game-scoreboard {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 15px 20px;
+  background-color: #ffffffcc;
+  border: 2px solid #006622;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  font-weight: bold;
+  color: #004d1a;
+  font-size: 18px;
+}
+
+.settings-container {
+  width: 100%;
+  margin-top: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #004d1a;
 }

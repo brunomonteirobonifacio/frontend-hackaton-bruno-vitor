@@ -8,17 +8,18 @@
 </head>
 <body>
   <main class="main">
-    <div id="game-scoreboard" style="display: flex; flex-direction: row; align-items: space-between;">
-      <div>Pontuação: <span id="score"></span></div>
-      <div>Recorde: <span id="high-score"></span></div>
+    <div id="game-scoreboard" >
+      <div>PONTUAÇÃO: <span id="score">0</span></div>
+      <div>RECORDE: <span id="high-score">0</span></div>
     </div>
     <canvas id="game-board" width="480" height="480"></canvas>
-    <div>
+    <div class="buttons-container">
       <button id="start-game-btn">REINICIAR</button>
+      <button id="toggle-musica">PARAR MUSICA</button>
     </div>
 
-    <div>  
-      <label for="increment-speed-strategy-selector">Aumentar a velocidade de acordo com:</label>
+    <div class="settings-container">  
+      <label for="increment-speed-strategy-selector">AUMENTAR A VELOCIDADE DE ACORDO COM:</label>
       <select name="increment-speed-strategy" id="increment-speed-strategy-selector">
         <option value="DONT_INCREMENT">NÃO AUMENTAR VELOCIDADE</option>
         <option value="BY_SCORE">PONTUAÇÃO</option>
@@ -26,9 +27,6 @@
       </select>
     </div>
 
-    <div>
-      <button id="toggle-musica">PARAR MUSICA</button>
-    </div>
 
     <audio id="musica-fundo" src="sound/cobrinha-8bit-cortado.mp3" loop></audio>
     <audio id="som-cobrinha-comeu" src="sound/som-cobrinha-comeu.mp3"></audio>
