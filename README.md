@@ -13,7 +13,7 @@ Jogo em que o jogador controla uma cobra e come frutas ao longo do mapa, evitand
 **Como jogar:**
 O jogo começa a rodar a partir do momento que o jogador entra na página, porém a cobra (rastro de pontos verdes) estará parada. O jogador pode usar as flechas do teclado (cima, baixo, esquerda e direita) para determinar a direção em que a cobra irá se mover. O jogador pode comer as frutas fazendo a cobra se mover até ela com as flechas do teclado e, ao comer uma fruta, a cobra aumenta seu tamanho e o jogador ganha um ponto. Porém, caso bata na parede (ou na própria cauda), o jogo acaba.
 Ao entrar no jogo, o usuário será solicitado por permissão de enviar notificações, que são enviadas quando o usuário quebra seu recorde.
-É possível pausar, retomar e reiniciar o jogo, ativar e desativar a música e escolher o "modo de jogo": não aumentar a velocidade; aumentar a velocidade de acordo com a pontuação; e aumentar a velocidade de acordo com o tempo de jogo.
+É possível reiniciar o jogo, ativar e desativar a música e escolher o "modo de jogo": não aumentar a velocidade; aumentar a velocidade de acordo com a pontuação; e aumentar a velocidade de acordo com o tempo de jogo.
 
 ## Assistente cobrinha
 Assistente virtual da cobrinha, que conta piadas, diz a hora e mostra sua localização atual, falando tudo com tom de sarcasmo.
