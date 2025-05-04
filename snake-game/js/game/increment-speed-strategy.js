@@ -9,7 +9,7 @@ class IncrementSpeedStrategy {
 const IncrementSpeedStrategies = {
   BY_SCORE: new IncrementSpeedStrategy((gameLoop) => {
     gameLoop.game.on('update', () => {
-      gameLoop.incrementSpeed = gameLoop.game.score * 0.05
+      gameLoop.incrementSpeed = gameLoop.game.score * 0.01
     })
   }),
 
