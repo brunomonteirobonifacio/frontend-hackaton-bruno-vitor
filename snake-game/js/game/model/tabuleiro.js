@@ -128,4 +128,8 @@ class Tabuleiro {
         && x >= 0 && x < this.width
         && !this.matriz[y][x];
   }
+
+  getGridColor() {
+    return 'black';
+  }
 }
