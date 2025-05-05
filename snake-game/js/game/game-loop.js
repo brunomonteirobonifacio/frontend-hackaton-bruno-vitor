@@ -46,10 +46,6 @@ class GameLoop {
     }, 200 / (1 + this.incrementSpeed));
   }
 
-  endGame() {
-    alert('Game Over'); // placeholder
-  }
-
   async processUserInput() {
     const keyPressed = this.keyboardListener.consumeQueue();
 
