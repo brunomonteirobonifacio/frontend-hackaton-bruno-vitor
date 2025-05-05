@@ -11,9 +11,10 @@ class Renderer {
     this.clearCanvas();
 
     const matriz = this.tabuleiro.matriz.slice();
-    const gridColor = this.tabuleiro.getGridColor
+    
+    const gridColor = this.tabuleiro.getGridColor();
     if (gridColor) {
-      this.canvasContext.strokeStyle = this.tabuleiro.getGridColor();
+      this.canvasContext.strokeStyle = gridColor;
       this.canvasContext.lineWidth = 0.001
     }
 
