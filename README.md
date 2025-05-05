@@ -21,3 +21,9 @@ Assistente virtual da cobrinha, que conta piadas, diz a hora e mostra sua locali
 **APIs utilizadas**:
 * Fetch: para buscar as piadas utilizando a API de piadas [JokeAPI](https://sv443.net/jokeapi/v2/)
 * Navigation: para mostrar a localização do usuário.
+* Date: para exibir a hora atual na tela.
+
+**Como funciona**:
+A assistente é ativada automaticamente ao carregar a página e se comunica com o jogador por meio de falas com tom humorado. O usuário pode clicar em botões para ler uma piada aleatória, descobrir a hora atual ou ver sua localização aproximada com base na API de geolocalização. Além de controlar a música da página, podendo ativar ou pausar a trilha sonora a qualquer momento.
+
+
