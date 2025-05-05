@@ -3,13 +3,15 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  max-width: 480px;
-  width: 100%;
+  width: min(60vh, 75vw);
+  height: 15vw;
 }
 
 #game-board {
   border: 5px solid black;
   background-color: azure;
+  max-width: 480px;
+  width: 100%;
 }
 
 body {
@@ -65,7 +67,7 @@ select, option {
   border: 2px solid #006622;
   background-color: #ffffff;
   color: #006622;
-  margin: 5px 0 10px 0;
+  margin: 5px 0;
   width: 100%;
 }
 
@@ -87,18 +89,10 @@ select:focus, option:focus {
   margin-left: 10px;
 }
 
-.score-container {
-  display: flex;
-  align-items: center;
-  background-color: transparent;
-  padding: 0;
-  margin: 0;
-  box-shadow: none;
-}
-
 #game-scoreboard {
   display: flex;
   justify-content: space-between;
+  flex-direction: row;
   width: 100%;
   margin-bottom: 20px;
   padding: 15px 20px;
@@ -109,6 +103,29 @@ select:focus, option:focus {
   font-weight: bold;
   color: #004d1a;
   font-size: 18px;
+  flex: 1;
+}
+
+@media (max-width: 500px), (max-height: 645px) {
+  #game-scoreboard {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+
+  .score-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .score-container:first-child {
+    margin-bottom: 10px;
+  }
+  
+  .score-container:last-child {
+    margin-top: 10px;
+  }
 }
 
 .settings-container {
