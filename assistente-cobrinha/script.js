@@ -81,14 +81,14 @@ function falar(frase) {
 
   window.addEventListener('DOMContentLoaded', () => {
     const audio = document.getElementById('musicaFundo');
-    audio.volume = 0.2; // volume baixo (0.0 a 1.0)
+    audio.volume = 0.2; 
   });
 
   document.getElementById('botaoMusica').addEventListener('click', () => {
     const audio = document.getElementById('musicaFundo');
   
     if (audio.paused) {
-      audio.volume = 0.2; // define o volume baixo
+      audio.volume = 0.2; 
       audio.play().catch(err => console.log("Erro ao tocar a música:", err));
     } else {
       audio.pause();

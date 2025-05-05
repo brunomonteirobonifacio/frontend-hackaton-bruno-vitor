@@ -76,3 +76,48 @@ body {
   #botaoMusica:hover {
     background-color: #d62828;
   }
+
+  @media (max-width: 768px) {
+    #coach-cobrinha {
+      flex-direction: column;
+      margin-bottom: 20px;
+    }
+  
+    .balao-fala {
+      margin-right: 0;
+      margin-top: 15px;
+      max-width: 90vw;
+      font-size: 16px;
+    }
+  
+    button {
+      width: 90%;
+      font-size: 16px;
+      padding: 12px 20px;
+    }
+  
+    #botaoMusica {
+      top: auto;
+      bottom: 10px;
+      right: 10px;
+      font-size: 14px;
+      padding: 8px 12px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .balao-fala {
+      font-size: 14px;
+    }
+  
+    button {
+      font-size: 14px;
+      padding: 10px 15px;
+    }
+  
+    #botaoMusica {
+      font-size: 12px;
+      padding: 6px 10px;
+    }
+  }
+  
