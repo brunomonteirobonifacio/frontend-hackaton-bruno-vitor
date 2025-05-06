@@ -50,6 +50,13 @@ function init() {
 }
 
 function startGame() {
+  const audioGameOver = document.getElementById('game-over');
+  
+  if (!audioGameOver.paused || !audioGameOver.ended) {
+    audioGameOver.pause()
+    audioGameOver.currentTime = 0;
+  }
+  
   if (playMusic) {
     const audio = document.getElementById('musica-fundo');
 
