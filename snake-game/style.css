@@ -136,11 +136,11 @@ label {
   color: #004d1a;
 }
 
-@media (max-width: 500px), (max-height: 645px) {
+@media (max-width: 525px), (max-height: 645px) {
   #game-scoreboard {
     display: flex;
     flex-direction: column;
-    flex-grow: 1;
+    flex: 1;
     justify-content: space-around;
   }
 
