@@ -115,6 +115,7 @@ select:focus, option:focus {
   width: 100%;
   margin-bottom: 20px;
   padding: 15px 20px;
+  box-sizing: border-box;
   background-color: #ffffffcc;
   border: 2px solid #006622;
   border-radius: 12px;
