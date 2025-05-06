@@ -25,7 +25,9 @@ Assistente virtual da cobrinha, que conta piadas, diz a hora e mostra sua locali
 **APIs utilizadas**:
 * Fetch: para buscar as piadas utilizando a API de piadas [JokeAPI](https://sv443.net/jokeapi/v2/)
 * Navigation: para mostrar a localização do usuário.
-* Date: para exibir a hora atual na tela.
+* Date: para exibir a hora atual na tela;
+* Event: para detectar quando o usuário aperta um botão e qual foi pressionado;
+* DOM: para exibir as falas da cobra no HTML.
 
 **Como funciona**:
 
