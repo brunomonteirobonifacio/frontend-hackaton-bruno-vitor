@@ -1,0 +1,123 @@
+body {
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    background: linear-gradient(to right, #b3ffad, #00ff55);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+  }
+  #coach-cobrinha {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
+  }
+  .balao-fala {
+    background-color: #fff;
+    color: #222;
+    padding: 15px;
+    border-radius: 15px;
+    border: 3px solid #444;
+    max-width: 300px;
+    font-size: 18px;
+    margin-right: 20px;
+    box-shadow: 4px 4px 10px rgba(0,0,0,0.4);
+    position: relative;
+  }
+  .balao-fala::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: -15px;
+    transform: translateY(-50%);
+    border-width: 10px 10px 15px 0;
+    border-style: solid;
+    border-color: transparent transparent transparent #fff;
+  }
+  button {
+    margin: 10px;
+    padding: 15px 25px;
+    border: none;
+    border-radius: 8px;
+    background-color: #ff9800;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  button:hover {
+    background-color: #fb8c00;
+  }
+
+  audio {
+    display: none;
+  }
+  #botaoMusica {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    background-color: #e63946;
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    z-index: 1000; 
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s;
+  }
+  
+  #botaoMusica:hover {
+    background-color: #d62828;
+  }
+
+  @media (max-width: 768px) {
+    #coach-cobrinha {
+      flex-direction: column;
+      margin-bottom: 20px;
+    }
+  
+    .balao-fala {
+      margin-right: 0;
+      margin-top: 15px;
+      max-width: 90vw;
+      font-size: 16px;
+    }
+  
+    button {
+      width: 90%;
+      font-size: 16px;
+      padding: 12px 20px;
+    }
+  
+    #botaoMusica {
+      top: auto;
+      bottom: 10px;
+      right: 10px;
+      font-size: 14px;
+      padding: 8px 12px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .balao-fala {
+      font-size: 14px;
+    }
+  
+    button {
+      font-size: 14px;
+      padding: 10px 15px;
+    }
+  
+    #botaoMusica {
+      font-size: 12px;
+      padding: 6px 10px;
+    }
+  }
+  
