@@ -17,7 +17,7 @@
   align-items: center;
   flex-direction: column;
   width: min(60vh, 75vw);
-  height: 85vh;
+  height: fit-content;
 }
 
 
@@ -137,7 +137,7 @@ label {
   color: #004d1a;
 }
 
-@media (max-width: 525px), (max-height: 645px) {
+@media (max-width: 550px), (max-height: 645px) {
   #game-scoreboard {
     display: flex;
     flex-direction: column;

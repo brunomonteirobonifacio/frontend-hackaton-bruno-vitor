@@ -7,7 +7,7 @@ let game;
 let playMusic = false;
 
 function init() {
-  tabuleiro = new Tabuleiro(tabuleiroCanvas.clientWidth, tabuleiroCanvas.clientHeight, SCALE);
+  tabuleiro = new Tabuleiro(tabuleiroCanvas.width, tabuleiroCanvas.height, SCALE);
   tabuleiro.jogador = new Jogador(5, 5);
   
   renderer = new Renderer(tabuleiro, tabuleiroCanvas);
