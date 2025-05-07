@@ -41,7 +41,7 @@ body {
   box-sizing: border-box;
 }
 
-button {
+.button {
   margin: 5px;
   padding: 10px 20px;
   background-color: #ff9800;
@@ -54,6 +54,7 @@ button {
   display: flex;
   flex: 1;
   justify-content: center;
+  text-decoration: none;
 }
 
 button:hover {
@@ -135,6 +136,14 @@ label {
   margin-bottom: 8px;
   font-weight: bold;
   color: #004d1a;
+}
+
+#btn-voltar {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  margin: 10px;
+  padding: 15px 25px;
 }
 
 @media (max-width: 550px), (max-height: 645px) {
